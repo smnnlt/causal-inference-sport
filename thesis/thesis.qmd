@@ -17,6 +17,8 @@ link-citations: true
 bibliography: ../references.bib
 csl: '`r here::here("msse.csl")`'
 geometry: "left = 4cm, right = 2cm, top = 2cm, bottom = 2cm"
+execute: 
+  echo: false
 params:
   title: 'More Than Just Associations: An Introduction to Causal Inference for Sport Science'
   name: Simon Nolte
@@ -123,6 +125,36 @@ Personally signed
 
 \newpage
 
+```{r}
+#| child = 'theory.qmd'
+```
+
+\newpage
+
+```{r}
+#| child = 'methods.qmd'
+```
+
+\newpage
+
+```{r}
+#| child = 'results.qmd'
+```
+
+\newpage
+
+```{r}
+#| child = 'discussion.qmd'
+```
+
+\newpage
+
+```{r}
+#| child = 'conclusion.qmd'
+```
+
+\newpage
+
 # References {.unnumbered}
 
 <div id="refs"></div>
@@ -133,11 +165,14 @@ Personally signed
 
 # Appendix
 
+## Mathematical Background
+
 ## Technical Details {#sec-tech}
 
 ### Session Info
 
 ```{r session}
+#| echo: true
 sessionInfo()
 ```
 
@@ -145,6 +180,7 @@ sessionInfo()
 
 ```{r}
 #| message: false
+#| echo: true
 
 p_used <- unique(renv::dependencies(path = "../")$Package)
 p_inst <- as.data.frame(installed.packages())

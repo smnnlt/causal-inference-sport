@@ -1,0 +1,15 @@
+---
+title: ''
+format: pdf
+bibliography: ../references.bib
+---
+
+# Results
+
+## Confounding
+
+## Collider bias
+
+## Application of the backdoor-criterion
+
+## Development of a causal model for endurance performance

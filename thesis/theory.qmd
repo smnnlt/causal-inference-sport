@@ -1,0 +1,67 @@
+---
+title: ''
+format: pdf
+bibliography: ../references.bib
+execute: 
+  echo: false
+---
+
+```{r}
+#| warning: false
+library(dagitty)
+library(ggdag)
+library(ggplot2)
+```
+
+
+# Theoretical Background
+
+## Graphical Causal Models
+
+<!-- DAGS, Definition, Example -->
+
+```{r}
+#| label: dag1
+#| out-width: '50%'
+#| fig-cap: "A simple dag"
+
+# dag1 <- dagitty("dag{a -> b}")
+# coordinates(dag1) <- list(x = c(a = 0, b = 0.5), y = c(a = 0, b = 0))
+# plot(dag1)
+
+dag1 <- dagify(B ~ A)
+coordinates(dag1) <- list(x = c(A = 0, B = 1), y = c(A = 0, B = 0))
+ggdag_classic(dag1, size = 15) + theme_dag_blank()
+
+```
+
+
+<!-- Concept of Dependence/Independence ? -->
+
+<!-- Assumptions regarding unobserved factors -->
+
+## Modelling causal systems
+
+<!-- Easiest way: Interpret causal models as a linear model -->
+
+<!-- d-separation ??? -->
+
+<!-- Paths, blocking, and unblocking -->
+
+## Colliders and Confounders
+
+<!-- Confounder introduce bias when not conditioned on -->
+
+<!-- Colliders introduce bias when conditioned on -->
+
+## Conditoning Rules: The backdoor criterion
+
+<!-- rationale behind the backdoor criterion -->
+
+<!-- identification and rules -->
+
+## Counterfactuals
+
+<!-- sure to include??? maybe rather as part of the outlook -->
+
+<!-- define, explain -->

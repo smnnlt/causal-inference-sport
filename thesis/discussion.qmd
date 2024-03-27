@@ -1,0 +1,39 @@
+---
+title: ''
+format: pdf
+bibliography: ../references.bib
+---
+
+# Discussion
+
+## Applications in Sport Science
+
+### Causality in observational data
+
+### Identification of confounders
+
+### Understanding big data
+
+### Study design
+
+### Outcome projection
+
+## Challenges and Limitations
+
+### Need for theoretical models
+
+### Data Quality
+
+### Complex Systems
+
+## Perspectives and Further Possibilities
+
+### Unobserved variables and measurement error
+
+### Sampling and survivorship bias
+
+### Longitudinal data
+
+### Causal modelling workflows in sport science practice
+
+

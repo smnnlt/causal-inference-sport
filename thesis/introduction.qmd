@@ -8,4 +8,31 @@ bibliography: ../references.bib
 
 ## Background
 
-This is a test of references [@rohrer2018].
+<!-- Distinction between associations and causal relations -->
+
+<!-- Define causality. -->
+
+<!-- Why is it important to find causal relations in sport science -->
+
+<!-- Why can't we say a relation is causal simply based on associations -->
+
+<!-- Methods are available to identify causal relationships, they combine a theoretical scientific model with empirical data. This is causal inference. -->
+
+## Previous Research
+
+<!-- Short history of causal inference. -->
+
+<!-- Popular tools of causal inference: e.g., DAGs -->
+
+<!-- Causal Inference in applied sciences: psychology, economics, ecology... -->
+
+<!-- Causality in sport science (basically no research yet) -->
+
+## Aim
+
+<!-- 1.  Introduce methods of causal inference based to sport science -->
+<!-- 2.  Demonstrate their utility on example data -->
+<!-- 3.  Construct potential causal models for future research in sport science -->
+<!-- 4.  Discuss limitations and challenges of causal inference in sports -->
+
+<!-- Goal: Make it as accessible as possible. Mathematical background and notation only in the appendix. Easy to understand examples. Work with simulations and real (toy) data. -->

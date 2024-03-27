@@ -1,0 +1,23 @@
+---
+title: ''
+format: pdf
+bibliography: ../references.bib
+---
+
+# Methods
+
+I conducted all analyses in this thesis using R version 4.3.1 [@rcoreteam2023] in the RStudio IDE version 2023.09.1.494 [@positteam2023]. The thesis was written in Quarto version 1.3.450 [@allaire2023]. The default settings and attached packages are documented in Appendix @sec-tech. The DAGs in this thesis were drawn using the ggdag R package [@barrett2024], which is based on the software daggity [@textor2016]. All source code of this project is available at [GitHub](https://github.com/smnnlt/causal-inference-sport).
+
+<!-- Preregistration (free form). -->
+
+## Data set
+
+## Creating causal models
+
+## Statistical modelling and evaluation
+
+<!-- More details in appendix -->
+
+## Simulations
+
+<!-- Maybe another appendix -->
