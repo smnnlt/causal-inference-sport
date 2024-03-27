@@ -1,0 +1,9 @@
+---
+title: ''
+format: pdf
+bibliography: ../references.bib
+---
+
+# Abstract {.unnumbered}
+
+# Zusammenfassung (German abstract) {.unnumbered}
