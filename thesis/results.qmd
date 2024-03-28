@@ -10,12 +10,12 @@ bibliography: ../references.bib
 
 <!-- make an example of confounding in the data set -->
 
-## Collider bias
+## Collider Bias
 
 <!-- make an example of a collider in the data set -->
 
-## Application of the backdoor-criterion
+## Application of the Backdoor-Criterion
 
 <!-- make a more complex example that shows how to use the backdoor-criterion -->
 
-## Development of a causal model for endurance performance
+## Development of a Causal Model for Endurance Performance

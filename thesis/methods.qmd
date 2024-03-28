@@ -10,14 +10,10 @@ I conducted all analyses in this thesis using R version 4.3.1 [@rcoreteam2023] i
 
 <!-- Preregistration (free form). -->
 
-## Data set
+## Data Set
 
-## Creating causal models
+## Causal Models Development
 
-## Statistical modelling and evaluation
+## Statistical Modeling and Evaluation
 
 <!-- More details in appendix -->
-
-## Simulations
-
-<!-- Maybe another appendix -->

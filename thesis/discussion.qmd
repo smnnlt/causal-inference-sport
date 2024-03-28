@@ -10,27 +10,27 @@ bibliography: ../references.bib
 
 ## Applications in Sport Science
 
-### Causality in observational data
+### Causality in Observational Data
 
 <!-- RCT often impossible. Especially in elite sports (hard to do experiments) or when it comes to explaining sport performance (no direct manipulation of predictors possible). -->
 
-### Identification of confounders
+### Identification of Confounders
 
 <!-- Even in RCT. Which variables to include/exclude in the statistical analyses. Potential problems with current approaches (all, random, all significant, none).  -->
 
-### Understanding big data
+### Understanding Big Data
 
 <!-- Large amount data. Currently analyzed with ML and traditional LR. May be good for prediction, but often does not help understanding. Even for prediction tasks understanding is vital. Understand why a model is failing in some cases, how a system works in new environments, and how to actually interfere. -->
 
 <!-- Maybe (Hypothetical) example of predicting marathon performance with training data -->
 
-### Study design
+### Study Design
 
 <!-- which (confounding) variables to measure, can the causal question aimed for be answered with the design. -->
 
 ## Challenges and Limitations
 
-### Need for theoretical models
+### Need for Theoretical Models
 
 <!-- causal inference need causal models. They are subjective. They are hard to prove or disprove. They rely on scientific consensus. -->
 
@@ -50,23 +50,23 @@ bibliography: ../references.bib
 
 ## Perspectives and Further Possibilities
 
-### Modeling unobserved variables, missing data, and measurement error
+### Modeling Unobserved Variables, Missing Data, and Measurement Error
 
 <!-- maybe measurement error in VO2max or RPE as proxy of motivation -->
 
-### Sampling and survivorship bias
+### Sampling and Survivorship Bias
 
 <!-- example: running economy and Vo2max. Apparent negative relationship in elite runners. May stem from sampling bias (good runners are good in either one or the other) -->
 
-### Longitudinal data
+### Longitudinal Data
 
 <!-- DAGs are fixed in time. Can be used for longitudinal data if time-points are separate notes. Make example of exercise intervention. Maybe SEM as an alternative -->
 
-### Predicting hypothetical outcomes with counterfactuals.
+### Predicting Hypothetical Outcomes with Counterfactuals.
 
 <!-- something with counterfactuals, but need to find an example. The concept needs to be introduced first-->
 
-### Causal modeling workflows in sport science practice
+### Causal Modeling Workflows in Sport Science Practice
 
 <!-- Implementation of causal modeling is part of a general revision of the scientific workflow in sport science. Link to preregistration, reproducibility -->
 

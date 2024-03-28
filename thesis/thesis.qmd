@@ -91,7 +91,7 @@ Personally signed
 
 \pagenumbering{roman}
 
-# Table of contents {-}
+# Table of Contents {-}
 
 \renewcommand{\contentsname}{}
 
@@ -167,6 +167,12 @@ Personally signed
 
 ## Mathematical Background
 
+\newpage
+
+## Simulations
+
+\newpage
+
 ## Technical Details {#sec-tech}
 
 ### Session Info
@@ -189,4 +195,3 @@ rownames(out) <- NULL
 out
 ```
 
-\newpage

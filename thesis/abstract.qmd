@@ -6,4 +6,4 @@ bibliography: ../references.bib
 
 # Abstract {.unnumbered}
 
-# Zusammenfassung (German abstract) {.unnumbered}
+# Zusammenfassung (German Abstract) {.unnumbered}
