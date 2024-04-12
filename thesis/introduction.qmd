@@ -6,19 +6,31 @@ bibliography: ../references.bib
 
 # Introduction
 
-## Background
+## Relevance
 
-<!-- Distinction between associations and causal relations -->
+Empirical research is acquiring knowledge through systematic observations by analyzing data. Data analysis typically encompasses three primary tasks: description, prediction, and causal inference [@hernán2019; @carlin2023]. Description means characterizing features in a subset of a population. Prediction means forecasting outcomes based on available data. Causal inference means making claims about causality --- what would have happened under different circumstances.
 
-<!-- Define causality. -->
+Most research in sport science is of causal nature. We want to understand how sports works with the ultimate goal to intervene: If we understand why certain people or teams are winning a competition, we can use that knowledge to adjust training and tactics. Likewise, in health contexts, we seek for sport intervention that change an individual's fitness to ultimately increase well-being compared to if not intervention were undertaken. <!-- point more to counterfactual thinking --> All of this is causal thinking.
+
+Research has devised a framework for conducting studies that can infer causality without knowledge of the exact underlying causal mechanisms: the randomized controlled trial (RCT). But in sport science, RCTs are often not feasible, because of the difficulty or undesirability of implementing randomized interventions, particularly in the context of elite sports [@bullock2023]. Consequently, causality must often be inferred through alternative designs, such as observational studies. The field of causal inference offers tools for this particular task.
+
+An association on its own does not inherently indicate causality, echoing the famous adage: "correlation does not imply causality." Associations observed in data may indeed stem from causality, but they can also arise from different types of bias, resulting in spurious associations. Conversely, causality does not necessarily imply correlation. Genuine causal relationships might remain obscured within the data. Distinguishing between associations and causal relationships necessitates looking beyond the data itself: it requires considering the causal model.
+
+Causal data analysis requires something that is not relevant to most description and prediction tasks: A scientific model informed by expert-domain knowledge, that depicts the causal nature of the phenomena under investigation. This causal model serves as the foundation for all causal inference. By adhering to the rules implied by the causal model, we can analyze our data in a manner that allows for the estimation of causal effects.
+
+<!--paragraph that causal inference is also helpful for experimental research, prediction and exploration settings [reference all]. -->
+
+I will start by establishing a working definition of causality and providing an overview of the historical development of causal inference as a research field. Following this, I will outline recent advancements in applied causal inference in across various disciplines, and offer an overview over the (mostly non-existing) literature of causal inference in sport science.
+
+<!-- thesis will demonstrate that causal inference can also be of use in prediction tasks in rcts? -->
 
 <!-- Why is it important to find causal relations in sport science -->
-
-<!-- Why can't we say a relation is causal simply based on associations -->
 
 <!-- Methods are available to identify causal relationships, they combine a theoretical scientific model with empirical data. This is causal inference. -->
 
 ## Previous Research
+
+<!-- Define causality. -->
 
 <!-- Short history of causal inference. -->
 
@@ -30,9 +42,6 @@ bibliography: ../references.bib
 
 ## Aim
 
-<!-- 1.  Introduce methods of causal inference based to sport science -->
-<!-- 2.  Demonstrate their utility on example data -->
-<!-- 3.  Construct potential causal models for future research in sport science -->
-<!-- 4.  Discuss limitations and challenges of causal inference in sports -->
+The aim of this thesis is to bring the methods of causal inference to sport science. The overachieving goal is to demonstrate the utility and necessity of causal methods for data analysis in sport science. I start with introducing key concepts of causal models using directed acyclic graphs. Using real-world and simulated example data, I will demonstrate concepts of collider bias, confounding, and conditioning in sport science. I will discuss opportunities that causal inference brings to sport science as well as challenges and limitations of adopting such approaches.
 
-<!-- Goal: Make it as accessible as possible. Mathematical background and notation only in the appendix. Easy to understand examples. Work with simulations and real (toy) data. -->
+I aim to make the thesis as accessible as possible to readers who are new to causal inference. Detailed methodologies of modeling and mathematical formulations will be included in the appendices. My objective is to ensure that the thesis is understandable for any sport scientist with some basic statistical education. Instead of critiquing current statistical practices in sport science, the objective of this work is to showcase the effectiveness of methods that extend beyond these practices.

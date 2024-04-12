@@ -169,7 +169,12 @@ Personally signed
 
 \newpage
 
-## Simulations
+## Simulations  {#sec-sim}
+
+```{r}
+#| child = 'simulations.qmd'
+```
+
 
 \newpage
 
@@ -188,10 +193,10 @@ sessionInfo()
 #| message: false
 #| echo: true
 
-p_used <- unique(renv::dependencies(path = "../")$Package)
-p_inst <- as.data.frame(installed.packages())
-out <- p_inst[p_inst$Package %in% p_used, c("Package", "Version")]
-rownames(out) <- NULL
-out
+# p_used <- suppressMessages(unique(renv::dependencies(path = "../")$Package))
+# p_inst <- as.data.frame(installed.packages())
+# out <- p_inst[p_inst$Package %in% p_used, c("Package", "Version")]
+# rownames(out) <- NULL
+# out
 ```
 

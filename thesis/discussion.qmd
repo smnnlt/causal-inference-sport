@@ -28,6 +28,10 @@ bibliography: ../references.bib
 
 <!-- which (confounding) variables to measure, can the causal question aimed for be answered with the design. -->
 
+### Predicting Hypothetical Outcomes with Counterfactuals.
+
+<!-- something with counterfactuals, but need to find an example. The concept needs to be introduced first-->
+
 ## Challenges and Limitations
 
 ### Need for Theoretical Models
@@ -48,6 +52,8 @@ bibliography: ../references.bib
 
 <!-- however the only way to understand complex systems is model them in restricted environments or simpler form. To ultimately infer in them, we need to understand their structure, often not in detail, but the most important aspects. This is what causal modeling aims to provide. -->
 
+### Communicating Causality
+
 ## Perspectives and Further Possibilities
 
 ### Modeling Unobserved Variables, Missing Data, and Measurement Error
@@ -61,10 +67,6 @@ bibliography: ../references.bib
 ### Longitudinal Data
 
 <!-- DAGs are fixed in time. Can be used for longitudinal data if time-points are separate notes. Make example of exercise intervention. Maybe SEM as an alternative -->
-
-### Predicting Hypothetical Outcomes with Counterfactuals.
-
-<!-- something with counterfactuals, but need to find an example. The concept needs to be introduced first-->
 
 ### Causal Modeling Workflows in Sport Science Practice
 

@@ -1,0 +1,15 @@
+---
+title: ''
+format: pdf
+bibliography: ../references.bib
+---
+
+```{r}
+# load simulation functions
+source("../scripts/simulation.R")
+```
+
+For demonstrating the basic concepts of causal inference I use simulations of simple linear models. The exposure is normally distributed as $X \sim N(0,1)$. For the simplest causal inference path of $X \rightarrow Y$, $Y$ is a linear combination of $X$ and an (in reality unobserved) error term $U_1 \sim N(0,1)$. Therefore, the true causal effect of $X$ on $Y$ equals 1.  More complex simulation models work in the same way, with each variable given by a linear combination of its ancestor variables and a random error term.
+
+The causal effect in each simulation is estimated by a linear regression model. For the simplest model of $X \rightarrow Y$, this means estimating the regression coefficient $b_1$ of $Y = b_1 * X + b_0 + \epsilon$ via ordinary least square estimation with the R Code `lm(Y ~ X, data)`. For each simulation, the estimated regression coefficient is assumed to be the best unbiased estimate of the causal effect, creating a distribution of estimated causal effects. 
+
