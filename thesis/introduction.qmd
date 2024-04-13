@@ -10,23 +10,17 @@ bibliography: ../references.bib
 
 Empirical research is acquiring knowledge through systematic observations by analyzing data. Data analysis typically encompasses three primary tasks: description, prediction, and causal inference [@hernán2019; @carlin2023]. Description means characterizing features in a subset of a population. Prediction means forecasting outcomes based on available data. Causal inference means making claims about causality --- what would have happened under different circumstances.
 
-Most research in sport science is of causal nature. We want to understand how sports works with the ultimate goal to intervene: If we understand why certain people or teams are winning a competition, we can use that knowledge to adjust training and tactics. Likewise, in health contexts, we seek for sport intervention that change an individual's fitness to ultimately increase well-being compared to if not intervention were undertaken. <!-- point more to counterfactual thinking --> All of this is causal thinking.
+Most research in sport science is of causal nature. We want to understand how sports works with the ultimate goal to intervene: If we understand why certain people or teams are winning a competition, we can use that knowledge to adjust training and tactics. Likewise, in health contexts, we seek for sport intervention that change an individual's fitness to ultimately increase well-being compared to if not intervention were undertaken. Ultimately, we are interested in potential outcomes --- what would have happened if the team had played different or if the individual had undergone a different training. This exactly is causal thinking.
 
 Research has devised a framework for conducting studies that can infer causality without knowledge of the exact underlying causal mechanisms: the randomized controlled trial (RCT). But in sport science, RCTs are often not feasible, because of the difficulty or undesirability of implementing randomized interventions, particularly in the context of elite sports [@bullock2023]. Consequently, causality must often be inferred through alternative designs, such as observational studies. The field of causal inference offers tools for this particular task.
 
-An association on its own does not inherently indicate causality, echoing the famous adage: "correlation does not imply causality." Associations observed in data may indeed stem from causality, but they can also arise from different types of bias, resulting in spurious associations. Conversely, causality does not necessarily imply correlation. Genuine causal relationships might remain obscured within the data. Distinguishing between associations and causal relationships necessitates looking beyond the data itself: it requires considering the causal model.
+An association on its own does not inherently indicate causality, echoing the famous adage: "correlation does not imply causality." Associations observed in data may indeed stem from causality, but they can also arise from different types of bias, resulting in spurious associations. Conversely, causality does not necessarily imply correlation. Genuine causal relationships might remain obscured within the data. Distinguishing between associations and causal relationships necessitates looking beyond the data itself.
 
-Causal data analysis requires something that is not relevant to most description and prediction tasks: A scientific model informed by expert-domain knowledge, that depicts the causal nature of the phenomena under investigation. This causal model serves as the foundation for all causal inference. By adhering to the rules implied by the causal model, we can analyze our data in a manner that allows for the estimation of causal effects.
+Causal data analysis requires something that is not relevant to most description and prediction tasks: A scientific model informed by expert-domain knowledge, that depicts the causal nature of the phenomena under investigation. This causal model serves as the foundation for all causal inference. By adhering to the rules implied by the causal model, we can analyze our data in a manner that allows for the estimation of causal effects. Methods of causal inference are vital to estimate causal effects from observational data. But they can also aid in designing and analyzing experiments, and even provide benefits for description and prediction analyses.
 
-<!--paragraph that causal inference is also helpful for experimental research, prediction and exploration settings [reference all]. -->
+As all statistical analyses, causal modeling is not free of assumptions. Those are assumptions about the underlying data, but also about the underlying data generative process. Causal modeling requires to think more clearly about these assumptions before conducting an analysis, and is in general more transparent in communicating them. In a way, this is a more honest way of doing inference than relying on non-causal language when infering causality was the actual research goal. <!-- one sentence? -->
 
-I will start by establishing a working definition of causality and providing an overview of the historical development of causal inference as a research field. Following this, I will outline recent advancements in applied causal inference in across various disciplines, and offer an overview over the (mostly non-existing) literature of causal inference in sport science.
-
-<!-- thesis will demonstrate that causal inference can also be of use in prediction tasks in rcts? -->
-
-<!-- Why is it important to find causal relations in sport science -->
-
-<!-- Methods are available to identify causal relationships, they combine a theoretical scientific model with empirical data. This is causal inference. -->
+I will start by establishing a working definition of causality and providing an overview of causal inference as a research field, with its history and school of thoughts. Following this, I will outline recent advancements in applied causal inference in across various disciplines, and offer an overview over the (sparse) literature of causal inference in sport science.
 
 ## Previous Research
 
@@ -34,7 +28,7 @@ I will start by establishing a working definition of causality and providing an 
 
 <!-- Short history of causal inference. -->
 
-<!-- Popular tools of causal inference: e.g., DAGs -->
+<!-- school of causal inference: potential outcome framework (Rubin) vs graph-based approaches (Pearl), what about Dawid?, Robins as merge? State the approach of causal inference chosen in this thesis-->
 
 <!-- Causal Inference in applied sciences: psychology, economics, ecology... -->
 

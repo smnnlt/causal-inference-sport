@@ -24,7 +24,7 @@ source("../scripts/simulation.R")
 
 ## Graphical Causal Models
 
-Graphical models are the easiest way to conceptualize causal systems. Pioneered by XXXX and YYYY, they allow to visualize causal relationships, which eases development and understanding of causal models.
+Graphical models are an easy way to conceptualize causal systems. Pioneered by XXXX and YYYY, they allow to visualize causal relationships, which eases development and understanding of causal models.
 
 A graphical causal model visualizes the exposure, outcome, covariates, and their (assumed) causal relationship. In the following, we will usually note the exposure (or independent variable) with $X$, the outcome (or dependent variable) with $Y$, and covariates (all other variables) with other letters. Note, that depending on the research question, the assignment of exposure, outcome, and covariates may change within the same model, so there can be instances, where the conventional naming cannot be followed.
 

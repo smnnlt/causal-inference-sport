@@ -28,9 +28,9 @@ bibliography: ../references.bib
 
 <!-- which (confounding) variables to measure, can the causal question aimed for be answered with the design. -->
 
-### Predicting Hypothetical Outcomes with Counterfactuals.
+### Altenative Realities with potential outcomes.
 
-<!-- something with counterfactuals, but need to find an example. The concept needs to be introduced first-->
+<!-- something with potential outcomes, but need to find an example -->
 
 ## Challenges and Limitations
 
@@ -54,6 +54,8 @@ bibliography: ../references.bib
 
 ### Communicating Causality
 
+<!-- something about causal and non-causal language, stating assumptions, etc -->
+
 ## Perspectives and Further Possibilities
 
 ### Modeling Unobserved Variables, Missing Data, and Measurement Error
@@ -73,5 +75,13 @@ bibliography: ../references.bib
 <!-- Implementation of causal modeling is part of a general revision of the scientific workflow in sport science. Link to preregistration, reproducibility -->
 
 <!-- combining expert domain knowledge (expertise) for creating models and outside domain knowledge (data analysis skills/statistics) -->
+
+<!-- First: Identify task as description, prediction, causal inference -->
+<!-- Second: State your estimand (and create a theoretical model) -->
+<!-- Third: Plan study or data analysis accordingly -->
+<!-- Fourth: Model the data accordingly -->
+<!-- Test assumptions, robustness -->
+<!-- Communicate process, results and assumptions -->
+
 
 

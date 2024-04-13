@@ -16,4 +16,6 @@ I conducted all analyses in this thesis using R version 4.3.1 [@rcoreteam2023] i
 
 ## Statistical Modeling and Evaluation
 
+<!-- why using a frequentist approach when Bayesian may be more connected to the general framwork of causal inference? -->
+
 <!-- More details in appendix -->
