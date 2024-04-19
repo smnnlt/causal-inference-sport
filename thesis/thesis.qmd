@@ -15,7 +15,7 @@ urlcolor: blue
 linkcolor: black
 link-citations: true
 bibliography: ../references.bib
-csl: '`r here::here("msse.csl")`'
+csl: '`r here::here("apa.csl")`'
 geometry: "left = 4cm, right = 2cm, top = 2cm, bottom = 2cm"
 execute: 
   echo: false
