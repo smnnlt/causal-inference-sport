@@ -20,17 +20,21 @@ source("../scripts/simulation.R")
 
 # Theoretical Background
 
-## Causility, Associations, and (In)dependence
+## Causality, Associations, and (In)dependence
+
+In the previous section we have defined causality as a concept of (hypothetically) intervening. If we intervene on a variable $X$ and this leads to changes in another variable $Y$ we say that $X$ causes $Y$. Statistically speaking, $X$ and $Y$ become dependent[^1]. An association, on the other hand, means that $X$ and $Y$ share information; if we now something about $X$, we also know something about $Y$, and *vice versa*. Crucially, associations are not directional while causality is typically understood as directional[^2]. Causality can be one reason for associations to arise, but other reasons for associations exist, for example a shared common cause. Therefore both causal relations and spurious relations can produce associations and let variables become dependent. It is the underlying causal model that can distinguish between mere associations and causal relations.
+
+[^1]: For the mathematical notation of (conditional) independence, see the appendix.
+
+[^2]: There are of cause examples, where causality can be bidirectional. For example in feedback loops, such as the price and demand models in economy, changes in price cause changes in demand and the other way around. But even in this case one can argue that these are essentially two different paths of causality, that happen sequentially if observed with enough precision. For this thesis we will not deal with feedback systems, but stick with simpler models that assume purely directional causality.
 
 ## Graphical Causal Models
 
-Graphical models are an easy way to conceptualize causal systems. Pioneered by XXXX and YYYY, they allow to visualize causal relationships, which eases development and understanding of causal models.
+Graphical models are an easy way to conceptualize causal systems. Pioneered by @pearl1995, they allow to visualize causal relationships, which eases development and understanding of causal models. A graphical causal model visualizes the exposure, outcome, covariates, and their (assumed) causal relationship. In the following, we will usually note the exposure[^3] with $X$, the outcome with $Y$, and covariates with other letters. <!--Note, that depending on the research question, the assignment of exposure, outcome, and covariates may change within the same model, so there may be instances, where the conventional naming cannot be followed. --> Variables in graphical causal model are connected by arrows. An arrow between $X$ and $Y$ means, that a direct causal relationship between the two is possible (see @fig-dag1) . The direction of the arrow tells the direction of causality. As in @fig-dag1, $X \rightarrow Y$ means that $X$ causes $Y$ (and not the other way around). For our definition of causality this means, if we intervene on $X$ we expect to see a change in $Y$.
 
-A graphical causal model visualizes the exposure, outcome, covariates, and their (assumed) causal relationship. In the following, we will usually note the exposure (or independent variable) with $X$, the outcome (or dependent variable) with $Y$, and covariates (all other variables) with other letters. Note, that depending on the research question, the assignment of exposure, outcome, and covariates may change within the same model, so there can be instances, where the conventional naming cannot be followed.
+[^3]: Exposure here is the medical term for what is often named the "independent variable" in a statistical model. It is the variable that we image our intervention on, so it does not need to be an actual *exposure* in the strict sense of the word.
 
-Variables in graphical causal model are connected by arrows. An arrow between $X$ and $Y$ means, that a direct causal relationship between the two is assumed (see @fig-dag1) . The direction of the arrow tells the direction of causality. As in @fig-dag1, $X \rightarrow Y$ means that $X$ causes $Y$ (and not the other way around). For our definition of causality this means, if we intervene on $X$ we expect to see a change in $Y$.
-
-The direction of causality has to be determined by theoretical knowledge. It cannot be found in the data itself. Suppose that in our first example in @fig-dag1, $X$ is biological sex and $Y$ is endurance performance. It appears obvious, that a causal relationship between both exist (though it is certainly much more complicated than that seen in the simple model). However, the fact that it is sex that causes performance --- and not the other way around --- is based purely on theoretical knowledge and understanding of the world. There are neither randomized trials for proof (because you cannot randomly assign sex), nor controlled interventions (because you cannot easily intervene on sex) possible. Ultimately, the direction of causality is an assumption by the researcher.
+The direction of causality has to be determined by theoretical knowledge; it cannot be found in the data itself. Suppose that in our first example in @fig-dag1, $X$ is biological sex and $Y$ is endurance performance. It appears obvious, that a causal relationship between both exist (though it is certainly much more complicated than that seen in the simple model). However, the fact that it is sex that causes performance — and not the other way around — is based purely on theoretical knowledge and understanding of the world. There are neither randomized trials for proof (because you cannot randomly assign sex), nor controlled interventions (because you cannot easily intervene on sex) possible. Ultimately, the direction of causality is an assumption by the researcher.
 
 ```{r}
 #| label: fig-dag1
@@ -44,7 +48,7 @@ ggdag_classic(dag1, size = 15) + theme_dag_blank()
 
 ```
 
-Causal systems in the world are usually more complex than consisting of only exposure and outcome, and so are the graphical causal models depicting them. A more complex graph is displayed in @fig-dag2. $X$ and $Y$ are not directly connected anymore, but indirectly via $B$. This is called a *causal path*. We will later see, that some models also have non-causal paths.
+Causal systems in the world are usually more complex than consisting of only exposure and outcome, and so are the graphical causal models depicting them. A slightly more complex graph is displayed in @fig-dag2. $X$ and $Y$ are not directly connected anymore, but indirectly via $B$. This sequence $X \rightarrow B \rightarrow Y$ is called a *causal path*. We will later see, that some models also have non-causal paths.
 
 ```{r}
 #| label: fig-dag2
@@ -58,24 +62,28 @@ ggdag_classic(dag2, size = 15) + theme_dag_blank()
 
 ```
 
-The graph in @fig-dag2 is called an directed acyclic graph (DAG). It is directed, because all paths have arrows (the direction of causality is set). It is acyclic, because there are no circular paths in it. Finally, it is a graph. All graphs in this thesis will be DAGs, because the presented tools work only for these, and most research problems can be adequately formulated using them.
+The graph in @fig-dag2 is called a directed acyclic graph (DAG). It is directed, because all paths have arrows (the direction of causality is set). It is acyclic, because there are no circular paths in it. Finally, it is a graph. All graphs in this thesis will be DAGs, because the presented tools work only for these, and most research problems can be adequately formulated using them. More important than which arrows a DAG contains is which it lacks. A DAG should depict all *potential* causal relations important to the research question. If two variables are not connected, we explicitly assume that they do not causally relate to each other[^4]. For example, in @fig-dag2, there is no direct connection between $X$ and $A$, or between $X$ and $Y$.
 
-What is inside a DAG is as important as what is not inside it. A DAG should depict all causal relations important to the research question. If two variables are not connected, we assume that they do not causally relate to each other. For example, in @fig-dag2, there is no direct connection between $X$ and $A$, or between $X$ and $Y$.
+[^4]: In other words, if two variables are connected they might or might not have a causal relation. If two variables are not connected we assume that they definitely have no causal relation. This is a strong assumption in many scenarios, but when reasoned properly the foundation of causal inference.
 
 DAGs tell a story. For example, we can assign the variables in @fig-dag2 to a very simple model of endurance performance. Let $X$ be the biological sex, $A$ the nutrition status, $B$ the physiological capacity to perform endurance tasks, and $Y$ the endurance performance in a competition. Our model assumes that sex and nutrition both directly affect the physiological capacity, and this in turn affects the performance. On the other hand, it assumes that sex and nutrition are not causally related, and that both sex and nutrition have no direct effect on performance, but only an indirect effect via physiological capacity.
 
-## Error Terms in Causal Modeling
+## Modeling Causal Systems & Error Terms
 
-If we knew the true causal model and could measure all variables perfectly, we could exactly determine all causal effects. In reality, this is impossible. One of the main reasons are unobserved factors, that influence our relevant variables in the model. This could be things like random measurement error or biological variability. Taken together with the fact, that we can always only investigate causal effects in a sample of the population, our research will only result in an estimate of the causal effect. 
+DAGs are an abstract concept to describe research problems. This level of abstraction allows to plan a study and its data analysis on a conceptual level. For the actual data analysis or for demonstration purposes, a DAG has to be filled with data and functions. One way to fill a DAG, is to think of it as a linear regression model (or more precise, a linear structural equation model[^5]). The easiest DAG in the form $X \rightarrow Y$ can for example be analyzed as the linear regression $Y \sim X + \epsilon$. This assumes, that $Y$ is an additive linear combination of other variables. For this thesis we will analyze all DAGs as linear models, keeping in mind, that other types of models (e.g., non-linear relationships, interactions) are possible. A special role in these linear models has the error term $\epsilon$.
 
-As with any statistical analysis, we aim for unbiased and precise estimates. Unbiased means, that on average our estimate will correspond to the true value of the variable. Precise means, that the estimate will have a small variance, or in other words, that a single estimate is sufficiently near to the average estimate. Random error terms add imprecision, but not bias to our model. We will later learn scenarios, that introduce bias.
+[^5]: A linear structural equation model (SEM) is essentially a linear regression model with additional causal assumptions [@bollen2013]. All DAGs (and many of the research question from the potential outcome framework of causal inference) can be rewritten as a linaer SEM, assuming the additional constraints of linearity and additive components, though SEMs can in theory also be generalized to a non-linear setting [@bollen2013]. The analysis of DAGs via linear SEM profs to bring insights into causal systems, both in theory [e.g., @ding2015] and in practice \[e.g., \].
 
-To demonstrate the concepts of precision and bias of causal effect estimated, I will use toy data simulations in the following. These simulations create samples (n = 100) of data corresponding to the simulated causal model including random error terms. Each simulated sample is modeled to yield a single causal effect estimate. I then visualize the distribution of simulated estimated. More details of the simulation procedure can be found in @sec-sim. 
+If we knew the true causal model and could measure all variables perfectly, we could exactly determine all causal effects. In reality, this is impossible. One of the main reasons are unobserved factors (errors), that influence our relevant variables in the model. This could be things like random measurement error or biological variability. Taken together with the fact, that we can always only investigate causal effects in a sample of the population, our research will only result in an estimate of the true causal effect we want to determine (the estimand).
 
-@fig-dag3 demonstrates how unobserved factors (random error terms) add uncertainty to a causal effect estimate. Without the random error term, each sample would give the exact true causal effect. With the random error terms, some samples will give estimates that differ from the true causal effect. One main goal of causal inference is to create models, whose estimates do not differ systematically and do not differ too much from the true effect.
+As with any statistical analysis, we aim for unbiased and precise estimates. Unbiased means, that on average our estimate will correspond to the true value of the estimand. Precise means, that the estimate will have a small variance, or in other words, that repeated measurement will yield similar estimates. Random error terms add imprecision, but not bias to our model[^6]. We will later learn scenarios, that introduce bias.
+
+[^6]: At least this is an extremely common assumption. See the appendix for the mathematical notation.
+
+To demonstrate the concepts of precision and bias of causal effect estimates, I will use toy data simulations in the following. These simulations create samples (n = 100) of data corresponding to the simulated linear model including random error terms. Each simulated sample (k = 1000) is modeled to yield a single causal effect estimate. I then visualize the distribution of simulated effect estimates. More details of the simulation procedure can be found in @sec-sim. @fig-error demonstrates how unobserved factors (random error terms) add uncertainty to a causal effect estimate. Without the random error term, each sample would give the exact true causal effect. With the random error terms, some samples will give estimates that differ from the true causal effect. <!--One main goal of causal inference is to create models, whose estimates do not differ systematically and do not differ too much from the true effect.-->
 
 ```{r}
-#| label: fig-dag3
+#| label: fig-error
 #| out-width: '50%'
 #| fig-height: 6
 #| fig-scap: "A simple causal path, with random error."
@@ -105,12 +113,12 @@ p3.1 / p3.2 + plot_annotation(tag_levels = "a")
 
 ```
 
-Certainty in causal effect estimates is higher in simpler models. The main reason for this is that simpler models have less random error terms. This can be demonstrated by comparing a simple causal relation with a causal path (a chain).
+Precision in causal effect estimates is higher in simpler models. The main reason for this is that simpler models have less random error terms. This can be demonstrated by comparing a simple causal relation with a causal path (a chain). Along a causal path, information is generally lost, even if the causal effects are unaltered. This is caused by the additional error terms of intermediate variables (see @fig-errorchain). Chains therefore introduce uncertainty, but not bias, to a causal effect estimate[^7].
 
-Along a causal path, information is generally lost, even if the causal effects are unaltered. The culprits are the additional error terms of intermediate variables (see @fig-dag4). Chains therefore introduce uncertainty, but no bias, to a causal effect estimate.
+[^7]: View the appendix for a mathematical proof.
 
 ```{r}
-#| label: fig-dag4
+#| label: fig-errorchain
 #| out-width: '50%'
 #| fig-height: 6
 #| fig-width: 8
@@ -145,21 +153,24 @@ p4.3 <- ggplot() +
 
 ```
 
-For an example from sport science think of two different causal effects. First, the effect of a running intervention on mitochondrial density. Second, the effect of a running intervention on endurance performance. Even if we assume in the second case, that the effect is directly chained trough mitochondrial density (i.e., $intervention \rightarrow density \rightarrow performance$), the effect on endurance performance is harder to estimate. The main reason is, that endurance performance will be influenced by additional unobserved factors, that will not influence mitochondrial density, for example motivation, pacing, or day-to-day variability.
+For an example from sport science think of two different causal effects. First, the effect of a running intervention on mitochondrial density. Second, the effect of a running intervention on endurance performance. Even if we assume in the second case, that the effect is fully chained trough mitochondrial density (i.e., $intervention \rightarrow density \rightarrow performance$), the effect on endurance performance is harder to estimate. The main reason is, that endurance performance will be influenced by additional unobserved factors, that will not influence mitochondrial density, for example motivation, pacing, or day-to-day variability.
 
-Viewing the causal model in @fig-dag4, we have to reconsider that the arrows drawn in a DAG are as interesting as the arrows not drawn. In the example, all unobserved error terms are parent nodes, meaning that they are not influenced by any relevant variable, so also not by each other. This is a general assumption regarding unobserved error terms: We assume random errors to be uncorrelated. As soon as errors influence each other (directly or via other variables), we should model them explicitly to yield the best estimates. 
-<!-- maybe refer to previous example -->
+Viewing the causal model in @fig-errorchain, we have to reconsider that the arrows drawn in a DAG are as interesting as the arrows not drawn. In the example, all unobserved error terms are parent nodes, meaning that they are not influenced by any relevant variable, so also not by each other. This is a general assumption regarding unobserved error terms: We assume random errors to be uncorrelated. As soon as errors influence each other (directly or via other variables), we should model them explicitly[^8]. <!-- maybe refer to previous example -->
 
-## Modeling Causal Systems
+[^8]: The assumption of uncorrelated error terms is also common in applied statistics outside of causal inference. If error terms are correlated this complicates the estimation of effects. We can model correlated error terms in a DAG by creating a node for an unobserved variable. Another way to investigate the consequences of correlated error terms in linear SEMs is by drawing them from a multivariate normal distribution with an appropriate covariance matrix [e.g. in @ding2015].
 
-DAGs can be understood as linear models.
+## Conditioning
 
-DAGs are an abstract concept to describe research problems. This level of abstraction allows to plan a study and its data analysis on a conceptual level. For the actual data analysis, a DAG has to be filled with data and functions. 
+Causal paths can be blocked by conditioning on intermediate variables. Take for example the causal path $X \rightarrow A \rightarrow Y$. Let $X$ be the stroke volume of the heart, $A$ the maximum oxygen uptake, and $Y$ the endurance performance in a competition. We assume, that all of the causal effect of stroke volume on endurance performance is chained via maximum oxygen uptake. If we now condition on maximum oxygen uptake, no relationship between stroke volume and endurance performance remains.
 
-Arrows in a DAG represent a causal relationship, but they do not specify the type of this relationship. $X \rightarrow Y$ can mean a strong linear affect of $X$ on $Y$, or a weak negative curvelinear relation. While the researcher is free to choose what exact type of relation a DAG assumes for a set of two variables, a linear relationship is the common choice. 
+Several ways to condition on variables exist[^9]. An experimental way of conditioning on a variable is to stratify the sample by the variable. For example, if we would only investigate athletes with a similar maximum oxygen uptake, we would not expect to find any relationship to endurance performance anymore. A modeling way of conditioning on a variable is to include it in the statistical model. For example, modeling $Y \sim A + X + \epsilon$ would block the causal effect of $X$ on $Y$ (see @fig-block)[^10].
+
+[^9]: The mathematical notation of conditioning is straightforward (see Appendix). The experimental ways to condition are diverse and include methods that can be used during experimental design or data analysis.
+
+[^10]: Other popular ways of conditioning include matching, ... <!--# add more include citations -->
 
 ```{r}
-#| label: fig-dag8
+#| label: fig-block
 #| out-width: '50%'
 #| fig-height: 6
 #| fig-scap: "A causal path blocked by conditioning."
@@ -195,18 +206,18 @@ p8.3 <- ggplot() +
 
 ```
 
+One of the main goals of causal inference using graph-based methods is identification — to identify which variables should be conditioned on. Determining this set of variables to condition on is necessary to provide unbiased and accurate effect estimates Depending on the structure of the model, some variables can introduce bias when unconditioned, others bias the estimate when conditioned on. The following section will further elucidate these concepts by introducing confounders and colliders.
+
 ## Confounders and Colliders
 
-Confounders are variables that influence both the exposure and the outcome causally (see @fig-dag9 a). The confounder creates a spurious (non-causal) association between exposure and outcome. Conceptually, a confounder gives a set of similar information (knowledge) to both exposure and outcome. This leads to both sharing a set of information, regardless of their actual causal relationship. The actual causal relationship is biased.
+Confounders are variables that influence both the exposure and the outcome causally (see @fig-conf a). The confounder creates a spurious (non-causal) association between exposure and outcome. Conceptually, a confounder gives a set of similar information (knowledge) to both exposure and outcome. This leads to both sharing a set of information, regardless of their actual causal relationship. The actual causal relationship is biased.
 
-Confounders can be controlled for by conditioning on them in a model. This removes the entire bias and preserves the actual causal relationship. 
+Confounders can be controlled for by conditioning on them in the model. This removes the entire bias and preserves the actual causal relationship. Let's take an example by looking at @fig-conf. We are interested in the relationship between the (average) 5000-m time trial speed and the (average) 100-m sprint speed. We assume, that being fast in an endurance task reduces the ability to sprint fast, and thus reduces the 100-m speed. Therefore, we are interested in the causal relationship between $X$ (endurance speed) and $Y$ (sprinting speed). Note that this is a very simplistic causal model, as we could also model the unobserved ability to sprint and ability to perform endurance tasks, as well as their potential causes.
 
-Let's take an example by looking at @fig-dag9. We are interested in the relationship between the (average) 5000-m time trial speed and the (average) 100-m sprint speed. We assume, that being fast in an endurance task reduces the ability to sprint fast, and thus reduces the 100-m speed. Therefore, we are interested in the causal relationship between $X$ (endurance speed) and $Y$ sprinting speed. Note that this is a very simplistic causal model, as we could also model the unobserved ability to sprint and ability to perform endurance tasks, as well as their potential causes. 
-
-Our model has a collider $A$, the biological sex. From expert knowledge, we know that sex causally influences both sprinting and endurance performance, mainly via anthropometry and physiology. Sex thus biases the causal relationship between sprinting and endurance performance. To remove this bias, the analysis has to control for sex. For a discrete variable such as sex is typically documented as, controlling for means in practice stratifying the analysis by it. Assuming our causal model is correct --- which holds of course not true in our simple example here --- controlling for sex gives us the true (unbiased) causal relationship between endurance and sprinting performance.
+Our model has a collider $A$, the biological sex. From expert knowledge, we know that sex causally influences both sprinting and endurance performance, mainly via anthropometry and physiology. Sex thus biases the causal relationship between sprinting and endurance performance. To remove this bias, the analysis has to control for sex. For a discrete variable such as sex is typically documented as, controlling for means in practice stratifying the analysis by it. Assuming our causal model is correct — which holds of course not true in our toy example here — controlling for sex gives us the true (unbiased) causal relationship between endurance and sprinting performance.
 
 ```{r}
-#| label: fig-dag9
+#| label: fig-conf
 #| out-width: '50%'
 #| fig-height: 6
 #| fig-scap: "A graphical example of confounding."
@@ -244,12 +255,14 @@ p9.3 <- ggplot() +
 
 ```
 
-Colliders pose a more subtle form of bias. A collider is a variable that is causally influenced by the exposure and the outcome (see @fig-dag10 a). Per se, colliders do not cause harm. But when they are conditioning on the introduce bias into a model. This collider bias can be understood by the following: A collider combines knowledge from both its source, the exposure and the outcome, and thus also of their causal relationship. If this combined knowledge is being removed from a model by conditioning on the collider, then some of the actual causal relationship between exposure and outcome is also removed.
+Colliders pose a more subtle form of bias. A collider is a variable that is causally influenced by the exposure and the outcome (see @fig-coll a). Per se, colliders do not yield harm. But when they are conditioning on they introduce bias into a model[^11]. This collider bias can be understood by the following: A collider combines knowledge from both its source, the exposure and the outcome, and thus also of their causal relationship. If this combined knowledge is being removed from a model by conditioning on the collider, then some of the actual causal relationship between exposure and outcome is also removed.
 
-Consider the causal relationship between $X$ post-lactate in a ramp test and $Y$ maximum oxygen uptake in the same ramp test. Basically, our question is if more lactate causes a higher or lower maximum oxygen uptake. In our model, both lactate and VO2max influence the maximum velocity in the ramp test. This appears reasonable, as individuals with a more capable glycolytic or oxidatative energy metabolism are likely to outperform their counterparts that have neither in term of the maximum velocity. The maximum velocity is thus the collider $B$. Conditioning on it will bias our model.<!-- explain why! -->
+[^11]: Equally, conditioning on a descendant of a collider introduces bias (though generally not that large as when conditioning on the collider itself).
+
+Consider the causal relationship between $X$ post-lactate in a ramp test and $Y$ maximum oxygen uptake in the same ramp test. Basically, our question is if more lactate causes a higher or lower maximum oxygen uptake. In our model, both lactate and VO2max influence the maximum velocity in the ramp test. This appears reasonable, as individuals with a more capable glycolytic or oxidatative energy metabolism are likely to outperform their counterparts that have neither in term of the maximum velocity. The maximum velocity is thus the collider $B$. Conditioning on it will bias our model. <!-- explain why! -->
 
 ```{r}
-#| label: fig-dag10
+#| label: fig-coll
 #| fig-height: 6
 #| out-width: '50%'
 #| fig-scap: "A graphical example of collider bias."
@@ -287,6 +300,25 @@ p10.3 <- ggplot() +
 
 ## Conditioning Rules: The Backdoor Criterion
 
-<!-- rationale behind the backdoor criterion -->
+Based on the concepts of confounders and colliders, more general rules can be made regarding the determination of the optimal conditioning set for a given causal model. The most famous of these conditioning rules is the backdoor criterion. It works by first identifying all non-causal paths (backdoor paths), and second blocking all of them.
 
-<!-- identification and rules -->
+A non-causal path is any path between $X$ and $Y$ that starts with an arrow pointing into $X$. A non-causal path is open, if it has no collider or no variable conditioned on in it. It can be blocked (closed) by conditioning on a non-collider. For example in @fig-conf, $X \rightarrow Y$ is a causal path, and $X \leftarrow A \rightarrow Y$ is a non-causal path. The non-causal path can be blocked by conditioning on $A$, fulfilling the backdoor criterion, and thus providing an unbiased estimate of the causal effect of $X$ on $Y$.
+
+On the contrary, non-causal paths are blocked by default if they contain a collider. For example in @fig-blocked, one non-causal path exists $X \leftarrow A \rightarrow B \leftarrow Y$, but is is blocked by default because $B$ is a collider. Therefore the backdoor criterion is fulfilled and no conditioning is needed (i.e., the minimal sufficient conditioning set is empty). If one would decide to condition on $B$ in this instance (for example if $A$ is unobserved, and we decide to condition on all observed covariates), this would re-open the backdoor-path, biasing the estimate.
+
+```{r}
+#| label: fig-blocked
+#| fig-height: 4
+#| out-width: '50%'
+#| fig-scap: "A graphical example of a backdoor path closed by default."
+#| fig-cap: "A graphical example of a backdoor path closed by default. The non-causal path via $A$ and $B$ contains a collider and is therefore closed. Conditioning on $B$ would reopen the backdoor path."
+
+dag_blocked <- dagify(X ~ A, B ~ A + Y, Y ~ X)
+coordinates(dag_blocked) <- list(x = c(X = 0, A = 0, B = 1, Y = 1), y = c(X = 0, A = 1, B = 1, Y = 0))
+
+p_blocked <- ggdag_classic(dag_blocked, size = 15) + theme_dag_blank()
+p_blocked
+
+```
+
+The backdoor criterion helps to determine the variables that need to be conditioned on in graphical causal models of various complexity to yield an unbiased estimate. These variables form the so-called minimal sufficient conditioning set. Conditioning on more variables than sufficient can increase precision in certain cases, but often brings the danger of creating new bias or reducing precision. When certain variables in a DAG are unobserved, these can not be conditioned on. In this case it is possible, that no minimal sufficient conditioning set exists that fulfills the backdoor criterion. Therefore an unbiased estimation of the causal effect given the assumed causal model is impossible. We will come back to the question of choosing conditioning variables in the DISCUSSION.

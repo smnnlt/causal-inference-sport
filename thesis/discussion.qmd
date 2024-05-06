@@ -16,7 +16,24 @@ bibliography: ../references.bib
 
 ### Identification of Confounders
 
+```{r}
+#| label: fig-mbias
+#| fig-height: 4
+#| out-width: '50%'
+#| fig-scap: "A graphical example of M bias."
+#| fig-cap: "A graphical example of M bias. $C$ is caused by both $A$ and $B$, which also effect $X$ and $Y$, respectively. In this scenario, a non-causal path exists, but it is closed, because $C$ is a collider. When $C$ is conditioned on, this would open the backdoor path, because the conditiong creates a spurious relationship between $X$ and $Y$, so that both act together as a confounder."
+
+dag_mbias <- dagify(X ~ A, C ~ A + B, Y ~ X + B)
+coordinates(dag_mbias) <- list(x = c(X = 0, A = 0, C = 0.5, B = 1, Y = 1), y = c(X = 0, A = 1, B = 1, C = 0.5, Y = 0))
+
+p_mbias <- ggdag_classic(dag_mbias, size = 15) + theme_dag_blank()
+p_mbias
+```
+
+
 <!-- Even in RCT. Which variables to include/exclude in the statistical analyses. Potential problems with current approaches (all, random, all significant, none).  -->
+
+<!-- refer to economics theory of conditioning on all pre-treatment variables. M-Bias as counterarguments, but m-bias is rather unrealistic -->
 
 ### Understanding Big Data
 
@@ -28,9 +45,11 @@ bibliography: ../references.bib
 
 <!-- which (confounding) variables to measure, can the causal question aimed for be answered with the design. -->
 
-### Altenative Realities with potential outcomes.
+### Hypothetical Interventions with Potential Outcomes.
 
 <!-- something with potential outcomes, but need to find an example -->
+
+<!-- predictions on an individual level (instead of group level), links to heterogeneity of treatment effect, counterfactual theory of Pearl and arguments against it (ie residuals independent of treatment). -->
 
 ## Challenges and Limitations
 
@@ -44,6 +63,8 @@ bibliography: ../references.bib
 
 <!-- Even a correct model can not answer the questions if it has the wrong data. Incorrect or noisy data limits research, and causal inference can not really help here. Sometimes no perfect model exists. -->
 
+<!-- causal inference can not compensate bad experimental design -->
+
 <!-- however this is an issue for all types of analysis. Causal inference has tools to deal with error and missingness of data -->
 
 ### Complex Systems
@@ -56,31 +77,39 @@ bibliography: ../references.bib
 
 <!-- something about causal and non-causal language, stating assumptions, etc -->
 
+<!-- maybe sometimes to confident usage of causal inference -->
+
+<!-- but more explicit with assumptions than current practices -->
+
 ## Perspectives and Further Possibilities
 
 ### Modeling Unobserved Variables, Missing Data, and Measurement Error
 
 <!-- maybe measurement error in VO2max or RPE as proxy of motivation -->
 
+<!-- link to imputation -->
+
 ### Sampling and Survivorship Bias
 
 <!-- example: running economy and Vo2max. Apparent negative relationship in elite runners. May stem from sampling bias (good runners are good in either one or the other) -->
 
+<!-- essentially a collider problem -->
+
 ### Longitudinal Data
 
-<!-- DAGs are fixed in time. Can be used for longitudinal data if time-points are separate notes. Make example of exercise intervention. Maybe SEM as an alternative -->
+<!-- DAGs are fixed in time. Can be used for longitudinal data if time-points are separate notes. Make example of exercise intervention. Maybe SEM /Robins DAG as an alternative -->
 
 ### Causal Modeling Workflows in Sport Science Practice
 
-<!-- Implementation of causal modeling is part of a general revision of the scientific workflow in sport science. Link to preregistration, reproducibility -->
+<!-- Implementation of causal modeling is part of a general revision of the scientific workflow in sport science. Transparent documentation of all steps (links to preregistration, reproducibility) -->
 
 <!-- combining expert domain knowledge (expertise) for creating models and outside domain knowledge (data analysis skills/statistics) -->
 
 <!-- First: Identify task as description, prediction, causal inference -->
-<!-- Second: State your estimand (and create a theoretical model) -->
-<!-- Third: Plan study or data analysis accordingly -->
+<!-- Second: State your estimand (and create a theoretical model, implement prior beliefs) -->
+<!-- Third: Plan study or data analysis accordingly-->
 <!-- Fourth: Model the data accordingly -->
-<!-- Test assumptions, robustness -->
+<!-- Test assumptions, robustness, sensitivity -->
 <!-- Communicate process, results and assumptions -->
 
 
