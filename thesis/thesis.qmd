@@ -167,6 +167,10 @@ Personally signed
 
 ## Mathematical Background
 
+```{r}
+#| child = 'math.qmd'
+```
+
 \newpage
 
 ## Simulations  {#sec-sim}
