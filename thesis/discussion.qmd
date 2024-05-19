@@ -8,13 +8,14 @@ bibliography: ../references.bib
 
 <!-- This thesis ... State main finding and introduce structure of discussion -->
 
-## Applications in Sport Science
+## General Applications of Causal Inference in Sport Science
 
 ### Causality in Observational Data
 
 <!-- RCT often impossible. Especially in elite sports (hard to do experiments) or when it comes to explaining sport performance (no direct manipulation of predictors possible). -->
 
-### Identification of Confounders
+
+### Identification of variables to Condition on
 
 ```{r}
 #| label: fig-mbias
@@ -35,21 +36,15 @@ p_mbias
 
 <!-- refer to economics theory of conditioning on all pre-treatment variables. M-Bias as counterarguments, but m-bias is rather unrealistic -->
 
-### Understanding Big Data
+## Applicability of Special Causal Inference Methods in Sports
 
-<!-- Large amount data. Currently analyzed with ML and traditional LR. May be good for prediction, but often does not help understanding. Even for prediction tasks understanding is vital. Understand why a model is failing in some cases, how a system works in new environments, and how to actually interfere. -->
+### Instrumental Variables
 
-<!-- Maybe (Hypothetical) example of predicting marathon performance with training data -->
+### Regression Discontinuity
 
-### Study Design
+### Difference-in-difference
 
-<!-- which (confounding) variables to measure, can the causal question aimed for be answered with the design. -->
-
-### Hypothetical Interventions with Potential Outcomes.
-
-<!-- something with potential outcomes, but need to find an example -->
-
-<!-- predictions on an individual level (instead of group level), links to heterogeneity of treatment effect, counterfactual theory of Pearl and arguments against it (ie residuals independent of treatment). -->
+### Synthetic Control
 
 ## Challenges and Limitations
 
@@ -59,6 +54,14 @@ p_mbias
 
 <!-- however all science implicitly relies on these. With causal inference they are just explicitly formalized, making it easier to discuss them and understand their implications. -->
 
+### Complex Systems
+
+<!-- all causal models are a simplification of the reality, which can not be adequately portrayed. DAGs can miss many variables and possible relations, so caution is needed. -->
+
+<!-- however the only way to understand complex systems is model them in restricted environments or simpler form. To ultimately infer in them, we need to understand their structure, often not in detail, but the most important aspects. This is what causal modeling aims to provide. -->
+
+### Small Samples
+
 ### Data Quality
 
 <!-- Even a correct model can not answer the questions if it has the wrong data. Incorrect or noisy data limits research, and causal inference can not really help here. Sometimes no perfect model exists. -->
@@ -67,11 +70,27 @@ p_mbias
 
 <!-- however this is an issue for all types of analysis. Causal inference has tools to deal with error and missingness of data -->
 
-### Complex Systems
+## Perspectives and Further Possibilities
 
-<!-- all causal models are a simplification of the reality, which can not be adequately portrayed. DAGs can miss many variables and possible relations, so caution is needed. -->
+### Modeling Missing Data and Measurement Error
 
-<!-- however the only way to understand complex systems is model them in restricted environments or simpler form. To ultimately infer in them, we need to understand their structure, often not in detail, but the most important aspects. This is what causal modeling aims to provide. -->
+<!-- maybe measurement error in VO2max or RPE as proxy of motivation -->
+
+<!-- link to imputation -->
+
+<!-- sampling bias? -->
+
+### Heterogenous Effects
+
+### Longitudinal Data
+
+<!-- DAGs are fixed in time. Can be used for longitudinal data if time-points are separate notes. Make example of exercise intervention. Maybe SEM /Robins DAG as an alternative -->
+
+### Understanding Big Data
+
+<!-- Large amount data. Currently analyzed with ML and traditional LR. May be good for prediction, but often does not help understanding. Even for prediction tasks understanding is vital. Understand why a model is failing in some cases, how a system works in new environments, and how to actually interfere. -->
+
+<!-- Maybe (Hypothetical) example of predicting marathon performance with training data -->
 
 ### Communicating Causality
 
@@ -81,25 +100,7 @@ p_mbias
 
 <!-- but more explicit with assumptions than current practices -->
 
-## Perspectives and Further Possibilities
-
-### Modeling Unobserved Variables, Missing Data, and Measurement Error
-
-<!-- maybe measurement error in VO2max or RPE as proxy of motivation -->
-
-<!-- link to imputation -->
-
-### Sampling and Survivorship Bias
-
-<!-- example: running economy and Vo2max. Apparent negative relationship in elite runners. May stem from sampling bias (good runners are good in either one or the other) -->
-
-<!-- essentially a collider problem -->
-
-### Longitudinal Data
-
-<!-- DAGs are fixed in time. Can be used for longitudinal data if time-points are separate notes. Make example of exercise intervention. Maybe SEM /Robins DAG as an alternative -->
-
-### Causal Modeling Workflows in Sport Science Practice
+## Causal Modeling Workflows in Sport Science Practice
 
 <!-- Implementation of causal modeling is part of a general revision of the scientific workflow in sport science. Transparent documentation of all steps (links to preregistration, reproducibility) -->
 

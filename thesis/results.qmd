@@ -6,16 +6,10 @@ bibliography: ../references.bib
 
 # Results
 
-## Confounding
+## Example 1: Use of Different Running Shoes and Injury Risk
 
-<!-- make an example of confounding in the data set -->
+@malisoux2015
 
-## Collider Bias
+## Example 2: Determinants of Marathon Pacing
 
-<!-- make an example of a collider in the data set -->
-
-## Application of the Backdoor-Criterion
-
-<!-- make a more complex example that shows how to use the backdoor-criterion -->
-
-## Development of a Causal Model for Endurance Performance
+@march2011
