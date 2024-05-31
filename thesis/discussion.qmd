@@ -17,6 +17,8 @@ bibliography: ../references.bib
 
 ### Identification of variables to Condition on
 
+<!-- maybe move the "Identification of Variables to Condition on" section to the appendix -->
+
 ```{r}
 #| label: fig-mbias
 #| fig-height: 4
@@ -37,6 +39,8 @@ p_mbias
 <!-- refer to economics theory of conditioning on all pre-treatment variables. M-Bias as counterarguments, but m-bias is rather unrealistic -->
 
 ## Applicability of Special Causal Inference Methods in Sports
+
+<!-- short introduction to special methods ("identification methods") -->
 
 ### Instrumental Variables
 
@@ -62,6 +66,8 @@ p_mbias
 
 ### Small Samples
 
+<!-- causal inference cannot overcome difficulties with small-samples. Even unbiased causal estimated can be extremely unprecise in small samples -->
+
 ### Data Quality
 
 <!-- Even a correct model can not answer the questions if it has the wrong data. Incorrect or noisy data limits research, and causal inference can not really help here. Sometimes no perfect model exists. -->
@@ -81,6 +87,8 @@ p_mbias
 <!-- sampling bias? -->
 
 ### Heterogenous Effects
+
+<!-- something about effect homogenity/heterogenity, maybe sharp nulls, and maybe individual-level predictions (e.g., counterfactual calculation by Pearl and their limitations) -->
 
 ### Longitudinal Data
 
