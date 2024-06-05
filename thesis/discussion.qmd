@@ -10,12 +10,11 @@ bibliography: ../references.bib
 
 ## General Applications of Causal Inference in Sport Science
 
-### Causality in Observational Data
+<!-- General discussion why and under which circumstances causal inference is useful -->
 
 <!-- RCT often impossible. Especially in elite sports (hard to do experiments) or when it comes to explaining sport performance (no direct manipulation of predictors possible). -->
 
-
-### Identification of variables to Condition on
+<!-- ### Identification of variables to Condition on -->
 
 <!-- maybe move the "Identification of Variables to Condition on" section to the appendix -->
 
@@ -33,7 +32,6 @@ p_mbias <- ggdag_classic(dag_mbias, size = 15) + theme_dag_blank()
 p_mbias
 ```
 
-
 <!-- Even in RCT. Which variables to include/exclude in the statistical analyses. Potential problems with current approaches (all, random, all significant, none).  -->
 
 <!-- refer to economics theory of conditioning on all pre-treatment variables. M-Bias as counterarguments, but m-bias is rather unrealistic -->
@@ -41,6 +39,22 @@ p_mbias
 ## Applicability of Special Causal Inference Methods in Sports
 
 <!-- short introduction to special methods ("identification methods") -->
+
+@angrist1999
+
+### Covariate Balancing
+
+<!-- maybe include matching & reweighting -->
+
+@stuart2010 for an introduction.
+
+@rosenbaum1983 as the first use of propensity scores. Maybe also @dehejia2002. @frölich2004 says that matching is better than reweighing, @busso2014 says not per se.
+
+@king2019 says propensity score matching is bad (though not reweighing) and proposes @iacus2012; @iacus2011 instead. But @black says it is bad.
+
+Solution?
+
+Use cases and potential applications in sport?
 
 ### Instrumental Variables
 
@@ -115,11 +129,13 @@ p_mbias
 <!-- combining expert domain knowledge (expertise) for creating models and outside domain knowledge (data analysis skills/statistics) -->
 
 <!-- First: Identify task as description, prediction, causal inference -->
+
 <!-- Second: State your estimand (and create a theoretical model, implement prior beliefs) -->
+
 <!-- Third: Plan study or data analysis accordingly-->
+
 <!-- Fourth: Model the data accordingly -->
+
 <!-- Test assumptions, robustness, sensitivity -->
+
 <!-- Communicate process, results and assumptions -->
-
-
-
