@@ -4,6 +4,13 @@ format: pdf
 bibliography: ../references.bib
 ---
 
+```{r}
+#| label: setup2
+#| echo: false
+library(ggdag)
+library(dagitty)
+```
+
 # Discussion
 
 <!-- This thesis ... State main finding and introduce structure of discussion -->
@@ -38,25 +45,76 @@ p_mbias
 
 ## Applicability of Special Causal Inference Methods in Sports
 
-<!-- short introduction to special methods ("identification methods") -->
+Apart from general principles of causal thinking and modeling based on graphical representations, a set of special causal inference methods has gained popularity in the past decades. Based on the potential outcome framework [@rubin1974], these became standard tools in the analysis of observational data especially in the field of economics [@athey2017], but also beyond. @angrist1999 called these set of causal inference tools "identification methods", as they help to identify causal effect estimates in certain common situations. The identification methods are well-researched analysis tools, that may also prove helpful in many applications in sport science. I will here introduce five common identification methods and discuss their potential application in sport science[^1]. @tbl-ident provides a summary of the five methods.
 
-@angrist1999
+[^1]: I chose the set of five methods based on @angrist1999 while making some modifications. I replaced the general "conditioning in a regression model" strategy, which has been discussed earlier, with covariate balancing methods, and added the newer method of synthetic control [both to some extent inspired by @athey2017; @cunningham2021].
 
+<!-- overview in a table (landscape mode) -->
+
+```{=tex}
+\newpage
+\KOMAoptions{paper=landscape,pagesize}
+\recalctypearea
+```
+```{r}
+#| label: tbl-ident
+#| tbl-cap: "A summary of causal identification methods and their application to sport science."
+
+d <- data.frame(
+  names = c("Covariate Balancing", "Instrumental Variables", "Regression Discontinuity", "Difference-in-Difference", "Synthetic Control"),
+  idea = c("Creating groups balanced on observed covariates when group assignment was not random","Control for unobserved confounders by using a variable that only relates to the outcome via the treatment.",rep.int(NA, 3)),
+  source = c("@stuart2010", "@greenland2000", rep.int(NA, 3)),
+  appl = c("Genetic profiling, injury research, team sport analytics", "Non-compliance and measurement errors in sport interventions, talent development", rep.int(NA, 3))
+)
+knitr::kable(d, col.names = c("Method", "Basic Idea", "Reference", "Applications in Sport Science"))
+```
+
+```{=tex}
+\newpage
+\KOMAoptions{paper=portrait,pagesize}
+\recalctypearea
+```
 ### Covariate Balancing
 
-<!-- maybe include matching & reweighting -->
+A common approach to causal inference of observational data is to mimic the characteristics of a RCT. In a RCT, treatment assignment is random, and thus treatment groups only differ in their covariates by chance. Conversely, in observational studies covariates may influence treatment assignment. For example in the study of multiple running shoe use and injury risk from the previous chapter \[LINK\] [@malisoux2015], runners may decide if they use different shoes based on weekly running volume. If weekly running volume also influences the outcome parameter of injury risk, this is an classical example of confounder bias \[LINK DAG\]. To mimic a RCT of multiple running shoe use, we could decide to only compare individuals with similar running volume (and other covariates). This is the basic idea of covariate balancing.
 
-@stuart2010 for an introduction.
+Covariate balancing can broadly be defined in three categories: subclassification, matching, and reweighting [@stuart2010]. Subclassification groups individuals with similar covariates into subclasses, then compares different treatments only within the subclasses, and finally calculates a (weighted) average of these comparisons [@cochran1968]. Matching aims to find individuals with equal or similar covariates and compare only them, often on a 1:1 basis, before pooling all comparisons [@rubin1973]. This often involves discarding data for which no (sufficient) matches could be found. Reweighting keeps all observation, but gives them new weights based on how representative they are for their group.
 
-@rosenbaum1983 as the first use of propensity scores. Maybe also @dehejia2002. @frölich2004 says that matching is better than reweighing, @busso2014 says not per se.
+Regardless of the method used, covariate balancing is typically a pre-analysis routine, i.e., it happens in a step before the actual causal data analysis and without including information on the outcome values. In some sense, it aims to solve the same problem of observed confounders that simple conditioning in a regression does address. Current advise is to use covariate balancing not instead of regression adjustments, but complementary, for example in the so called "doubly-robust" methods [@bang2005]. A benefit of covariate balancing over regression adjustments is that it eases the checking of overlap in covariate distributions. If this overlap is not given, linear adjustments tend to perform bad as they have to rely on extrapolation, but typical modelling workflows of linear regression do not involve simple checks of this.
 
-@king2019 says propensity score matching is bad (though not reweighing) and proposes @iacus2012; @iacus2011 instead. But @black says it is bad.
+A crucial question in covariate balancing is what defines "closeness" or similarity of covariates. Exact equality on all covariates will only work for large samples with few discrete covariates. In most cases researchers have to compute distance measures. One of the most common measures is the propensity score, the conditional probability that an individual was assigned to the treatment group given its covariates [@rosenbaum1983; @dehejia2002]. The propensity score thus reduces the multidimensional covariates to a single value. This value can be used to form subclasses, match units, or weight observations. The exact choice of a balancing method and a distance measure should be context-specific and the scientific debate which procedure works best is vital[^2]. @stuart2010 provides general recommendations regarding the choice of procedures. In general, it can be helpful to compare different methods (and method parameters) in a given data set.
 
-Solution?
+[^2]: Just as a short glimpse into the debate: @frölich2004 argues that weighting is always worse than matching, a finding that is challenged by @busso2014. @iacus2011 heavily criticize the widely used propensity-score matching [@dehejia2002]. They instead propose their own method of coarsed exact matching [@iacus2011; @iacus2012], which has in turn received opposition by @black2020.
 
-Use cases and potential applications in sport?
+The first researchers have begin to adopt covariate balancing methods into sport science. In the field of injury rehabilitation, propensity score matching was used to find adequate control groups for athletes undergoing recovery [@farinelli2023; @owens2022; @fenn2023; @jimenez2022]. Others compared fitness levels in soccer players over different decades [@gonaus2023] and estimated the effect of playing venue of match outcome [@kneafsey2018] using different matching methods. @nakahara2023 used propensity-score based subclassification to evaluate pitching strategy in baseball. In an innovative article, @gibbs2022 used matching to investigate the effect of timeouts on stopping point runs in basketball games.
+
+In general, covariate balancing can help in any situation in sport science, where we have a limited set of intervention, a set of observed pre-treatment variable, and rather large sample sizes. While covariate balancing methods can reduce bias, matching effectively discards observation units, and matching estimators are unstable in small sample sizes. Therefore, these methods are rather suited when there is at least a rather large control group of individuals. This could, for example, be comparing physiological markers of injured vs. uninjured athletes, or comparing genetic profiles of elite athletes against a non-elite population. An additional field of application could be non-randomized studies of health benefits from recreational sport participation. Covariate balancing can also help in understanding causal mechanisms of team sport performance [e.g., @gibbs2022].
 
 ### Instrumental Variables
+
+```{r}
+#| label: fig-instr
+#| fig-height: 4
+#| out-width: '50%'
+#| fig-scap: "A graphical example of an instrumental variable."
+#| fig-cap: "A graphical example of an instrumental variable. The relationship between exposure $X$ and outcome $Y$ is confounded by a set of unobserved variables $U$. The instrumental variable $Z$, which is unconfounded and only affects $Y$ via $X$, can be used to provide an unbiased estimate of the causal effect of $X$ on $Y$. "
+
+dag_instr <- dagify(X ~ Z + U, Y ~ X + U)
+coordinates(dag_instr) <- list(x = c(Z = 0, X = 0.5, U = 0.75, Y = 1), y = c(Z = 0, X = 0, U = 0.2, Y = 0))
+
+p_instr <- ggdag_classic(dag_instr, size = 15) + theme_dag_blank()
+p_instr
+```
+
+Confounders between received treatment and outcome are often not observed, or even known. In situation it is not directly possible to estimate an unbiased causal treatment effect. A way to reduce bias is by using an instrumental variable. Instrumental variables are variables, that cause the outcome only mediated by the treatment. For a graphical representation see @fig-instr. A set of unobserved variables $U$ influences both treatment $X$ and outcome $Y$, thus their causal relationship ist biased, as we cannot control for $U$ because it is unobserved. If we instead use the instrument $Z$, which only causes $X$ directly and $Y$ indirectly via $X$, we can isolate a part of the effect of $X$ on $Y$ that is not influenced by $U$.
+
+A classic example of an instrument is random treatment assignment [@greenland2000]. People may actively decide if they want to receive a treatment, and these decisions may be driven by unobserved confounders that also cause the outcome variable. The assignment to a treatment does not directly influence the outcome, but only receiving a treatment does. As people assigned to the treatment group are much more likely to follow the assignment and thus receiving treatment, treatment assignment works as an instrument. Using an appropriate procedure (typically a two-stage least square estimator), researchers can estimate the causal effect of receiving a treatment on the outcome[^3].
+
+[^3]: Depending on whether we assume heterogeneity in the treatment effect, the causal effect estimated is somewhat limited in its definition. Strictly speaking we only estimate the causal effect of treatment in those that adhere to treatment assignment. This is often called the locale average treatment effect of compliers. If we are interested in the mechanistic causes of receiving a treatment this should be what interests us. If the goal is to evaluate the causes of implementing a treatment on a population level (e.g., for policy research) it is more appropriate to include non-compliance in the estimation, and therefore not use instrumental variables.
+
+Instrumental variables can be used to adjust for unobserved confounders and is helpful in problems of measurement error and non-compliance. As an example from sport science, @ruseski2014 investigated the causal effect of sport participation on happiness, a relationship that is likely confounded by unobserved variables (e.g., biography and socio-economic background). They used physical distance to the nearest sporting facility and personal belief in the benefits of exercising as instrumental variables and found that there was indeed a positive causal effect of sport participation on happiness. @edouard2021 suggested to use instrumental variables for the analysis of sport injury prevention treatments. But @shrier2020 demonstrated that they made several mistakes in both their theoretical presentation and the example data analysis. This does not invalidate the potential use of instrumental variables in sport science, but highlights the caution that has to be taken when implementing new approaches.
+
+The search for good instrumental variables is a challenging one. Aside from the assumptions of the DAG structure in @fig-instr, instruments should be strongly related to the treatment variable. If they only moderately influence the treatment, they are called "weak instruments" [@bound1995]. Weak instruments are often unsuccessful in removing bias, even in large samples. Good instruments often involve an element of randomness. As an example of sport science, we may be interested in the effect of being part of youth national squad on adult sport success. Both are very likely confounded by a variety of unobserved factors (e.g., social, psychological, and biological). An example for an instrument is in this case the month of birth. The month of birth does not share any unobserved confounders with the other variables, as it can be seen as essentially random. But it effects being part of a youth national squad (as the norms are defined by birth years and later born are less matured and thus less likely to be part of the squad). It does however have no direct influence on later adult success. Therefore the DAG in @fig-instr holds, though we have to test if birth month is not a too weak instrument. This example demonstrates the potential use of instrumental variable approaches in sport science.
 
 ### Regression Discontinuity
 

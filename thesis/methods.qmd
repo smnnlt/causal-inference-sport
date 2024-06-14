@@ -10,4 +10,6 @@ bibliography: ../references.bib
 
 <!-- Deviations from preregistration (free form) -->
 
-I conducted all analyses in this thesis using R version 4.3.1 [@rcoreteam2023] in the RStudio IDE version 2023.09.1.494 [@positteam2023]. The thesis was written in Quarto version 1.3.450 [@allaire2023]. The default settings and attached packages are documented in Appendix @sec-tech. The DAGs in this thesis were drawn using the ggdag R package [@barrett2024], which is based on the software daggity [@textor2016]. All source code of this project is available at [GitHub](https://github.com/smnnlt/causal-inference-sport).
+<!-- explain what was planed before, why deviations occur, and what difficulties a preregistration of conceptual work brings -->
+
+I conducted all analyses in this thesis using R version 4.4.0 [@r2024] in the RStudio IDE version 2024.4.0.735 [@positteam2024]. The thesis was written in Quarto version 1.3.450 [@allaire2023]. The default settings and attached packages are documented in Appendix @sec-tech. The DAGs in this thesis were drawn using the ggdag R package [@barrett2024], which is based on the software daggity [@textor2016]. All source code of this project is available at [GitHub](https://github.com/smnnlt/causal-inference-sport).

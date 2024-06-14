@@ -3,7 +3,9 @@ title: " "
 format: 
   pdf:
     include-in-header: 
-      text: \usepackage{setspace}
+      text: |
+        \usepackage{setspace}
+        \usepackage{typearea}
     title-meta: 'More Than Just Associations: An Introduction to Causal Inference for Sport Science'
     author-meta: 'Simon Nolte'
     subject: 'Released under a CC-BY-NC-ND license'
