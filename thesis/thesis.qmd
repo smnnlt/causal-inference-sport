@@ -170,7 +170,7 @@ Personally signed
 
 # Appendix
 
-## Mathematical Background
+## Mathematical Background {#sec-math}
 
 ```{r}
 #| child = 'math.qmd'
@@ -182,6 +182,14 @@ Personally signed
 
 ```{r}
 #| child = 'simulations.qmd'
+```
+
+\newpage
+
+## Which variables to condition on {#sec-control}
+
+```{r}
+#| child = 'control.qmd'
 ```
 
 
