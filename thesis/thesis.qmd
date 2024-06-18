@@ -9,6 +9,7 @@ format:
     title-meta: 'More Than Just Associations: An Introduction to Causal Inference for Sport Science'
     author-meta: 'Simon Nolte'
     subject: 'Released under a CC-BY-NC-ND license'
+    linestretch: 1.5
 number-sections: true
 top-level-division: section
 mainfont: Arial
@@ -17,7 +18,7 @@ urlcolor: blue
 linkcolor: black
 link-citations: true
 bibliography: ../references.bib
-csl: '`r here::here("apa.csl")`'
+csl: '../apa.csl'
 geometry: "left = 4cm, right = 2cm, top = 2cm, bottom = 2cm"
 execute: 
   echo: false
@@ -27,6 +28,8 @@ params:
   university: German Sport University Cologne
   year: 2024
 ---
+
+\singlespacing
 
 \begin{centering}
 

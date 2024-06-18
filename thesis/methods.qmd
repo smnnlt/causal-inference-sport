@@ -2,6 +2,11 @@
 title: ''
 format: pdf
 bibliography: ../references.bib
+editor:
+  markdown:
+    references: 
+      location: block
+      prefix: "methods"
 ---
 
 # Methods
