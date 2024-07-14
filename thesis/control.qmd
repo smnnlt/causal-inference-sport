@@ -31,7 +31,7 @@ p_mbias
 
 <!-- refer to economics theory of conditioning on all pre-treatment variables. M-Bias as counterarguments, but m-bias is rather unrealistic -->
 
-general criteria: @vanderweele2011; @vanderweele2011
+general criteria: @vanderweele2011; @vanderweele2019
 
 discussion Pearl vs Rubin @pearl2009a @rubin2007
 
