@@ -178,14 +178,6 @@ Personally signed
 
 \newpage
 
-## Simulations  {#sec-sim}
-
-```{r}
-#| child = 'simulations.qmd'
-```
-
-\newpage
-
 ## Which variables to condition on {#sec-control}
 
 ```{r}
