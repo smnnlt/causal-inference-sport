@@ -178,15 +178,6 @@ Personally signed
 
 \newpage
 
-## Which variables to condition on {#sec-control}
-
-```{r}
-#| child = 'control.qmd'
-```
-
-
-\newpage
-
 ## Technical Details {#sec-tech}
 
 ### Session Info
@@ -202,10 +193,10 @@ sessionInfo()
 #| message: false
 #| echo: true
 
-# p_used <- suppressMessages(unique(renv::dependencies(path = "../")$Package))
-# p_inst <- as.data.frame(installed.packages())
-# out <- p_inst[p_inst$Package %in% p_used, c("Package", "Version")]
-# rownames(out) <- NULL
-# out
+p_used <- suppressMessages(unique(renv::dependencies(path = "../")$Package))
+p_inst <- as.data.frame(installed.packages())
+out <- p_inst[p_inst$Package %in% p_used, c("Package", "Version")]
+rownames(out) <- NULL
+out
 ```
 
