@@ -29,17 +29,16 @@ A useful way to check for baseline imbalances is to investigating propensity sco
 
 ```{r}
 #| label: fig-dagshoes
-#| fig-height: 4
 #| out-width: '50%'
 #| fig-scap: "A potential graphical model for the effect of shoe usage on running injuries."
-#| fig-cap: "A potential graphical model for the effect of shoe usage on running injuries."
+#| fig-cap: "A potential graphical model for the effect of shoe usage on running injuries. perf represents race performance. char stand for characteristics of the biological structures (e.g., bone mineral density)."
 
 library(ggdag)
 library(dagitty)
 
-dag_shoes <- ggdag::dagify(training ~ experience,  risk ~ training + shoes + char, shoes ~ experience + training, performance ~ training + experience + age, experience ~ age, char ~ training + age, injury ~ risk)
+dag_shoes <- ggdag::dagify(training ~ experience,  risk ~ training + shoes + char, shoes ~ experience + training, perf ~ training + experience + age, experience ~ age, char ~ training + age, injury ~ risk)
 
-coordinates(dag_shoes) <- list(x = c(shoes = 0.2, risk = 0.5, injury = 0.8, performance = 0.2, training = 0.5, char = 0.8, experience = 0.35, age = 0.65), y = c(shoes = 0.2, risk = 0.2, injury = 0.2, performance = 0.5, training = 0.5, char = 0.5, experience = 0.8, age = 0.8))
+coordinates(dag_shoes) <- list(x = c(shoes = 0.2, risk = 0.5, injury = 0.8, perf = 0.2, training = 0.5, char = 0.8, experience = 0.35, age = 0.65), y = c(shoes = 0.2, risk = 0.2, injury = 0.2, perf = 0.5, training = 0.5, char = 0.5, experience = 0.8, age = 0.8))
 
 p_shoes <- ggdag::ggdag_classic(dag_shoes, size = 8) + ggdag::theme_dag_blank()
 p_shoes
@@ -65,13 +64,12 @@ The secondary aim by @kruseman2005 is causal; it is based on the hypothesis that
 
 ```{r}
 #| label: fig-dagnutrition
-#| fig-height: 4
 #| out-width: '50%'
 #| fig-scap: "A potential graphical model for nutrition intake in an ultra-marathon."
-#| fig-cap: "A potential graphical model for nutrition intake in an ultra-marathon. plevel represents performance level (the physiological capability to perform the endurance task)."
+#| fig-cap: "A potential graphical model for nutrition intake in an ultra-marathon. plevel represents performance level (the physiological capability to perform the endurance task). perf stands for race performance."
 
-dag_nutrition <- ggdag::dagify(training ~ experience,  plevel ~ training, intake ~ experience, performance ~ intake + plevel)
-coordinates(dag_nutrition) <- list(x = c(experience = 0.35, training = 0.6, plevel = 0.5, intake = 0.35, performance = 0.65), y = c(experience = 0.7, training = 0.7, plevel = 0.5, intake = 0.2, performance = 0.2))
+dag_nutrition <- ggdag::dagify(training ~ experience,  plevel ~ training, intake ~ experience, perf ~ intake + plevel)
+coordinates(dag_nutrition) <- list(x = c(experience = 0.5, training = 0.575, plevel = 0.65, intake = 0.35, perf = 0.65), y = c(experience = 0.65, training = 0.5, plevel = 0.35, intake = 0.2, perf = 0.2))
 
 p_nutrition <- ggdag::ggdag_classic(dag_nutrition, size = 8) + ggdag::theme_dag_blank()
 p_nutrition

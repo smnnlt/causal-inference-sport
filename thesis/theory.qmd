@@ -86,7 +86,6 @@ Just like in any statistical analysis, we aim to obtain unbiased and precise est
 ```{r}
 #| label: fig-error
 #| out-width: '50%'
-#| fig-height: 6
 #| fig-scap: "A simple causal path with random error."
 #| fig-cap: "A simple causal path with random error. (a) $X$ causes $Y$, but both variables are influenced by unobserved variables (random error). This adds imprecision to our model estimates, but on average, the true effect will be estimated (i.e., the model is unbiased)."
 
@@ -117,7 +116,6 @@ Several ways to condition on variables exist[^theory-7]. An experimental approac
 ```{r}
 #| label: fig-block
 #| out-width: '50%'
-#| fig-height: 6
 #| fig-scap: "A causal path blocked by conditioning."
 #| fig-cap: "A causal path blocked by conditioning. The causal path is blocked, because the analysis conditions on $A$. Since all affects of $X$ on $Y$ pass through $A$, conditioning on $A$ means that no causal effect remains."
 
@@ -140,7 +138,6 @@ Confounders can be controlled for by conditioning on them in the model. This rem
 ```{r}
 #| label: fig-confcoll
 #| out-width: '50%'
-#| fig-height: 6
 #| fig-scap: "Confounders and colliders in a DAG."
 #| fig-cap: "Confounders and colliders in a DAG. (a) A graphical example of confounding. Both $X$ and $Y$ share a common cause $A$. The confounder introduces bias in determining the causal effect of $X$ on $Y$. Conditioning on $A$ removes this bias in the analysis. (b) A graphical example of collider bias. Both $X$ and $Y$ directly affect the collider $B$. As long as $B$ is not conditioned on, the causal effect of $X$ on $Y$ remains unbiased. However, conditioning on $B$ will introduce bias into the analysis."
 
@@ -170,7 +167,7 @@ Non-causal paths are blocked by default if they contain a collider. For example,
 
 ```{r}
 #| label: fig-blocked
-#| fig-height: 4
+#| fig-height: 3
 #| out-width: '50%'
 #| fig-scap: "A graphical example of a backdoor path closed by default."
 #| fig-cap: "A graphical example of a backdoor path closed by default. The non-causal path via $A$ and $B$ contains a collider and is therefore closed. Conditioning on $B$ would reopen the backdoor path."
