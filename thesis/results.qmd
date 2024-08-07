@@ -9,7 +9,7 @@ editor:
       prefix: "results"
 ---
 
-# Results
+# Results {#sec-results}
 
 ## Example 1: Use of Different Running Shoes and Injury Risk {#sec-example1}
 
