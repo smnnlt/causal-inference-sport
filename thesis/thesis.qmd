@@ -77,7 +77,7 @@ Affirmation in lieu of an oath
 
 Herewith I affirm in lieu of an oath that I have authored this Bachelor thesis independently and did not use any other sources and tools than indicated. All citations, either direct quotations or passages which were reproduced verbatim or nearby-verbatim from publications, are indicated and the respective references are named. The same is true for tables and figures. I did not submit this piece of work in the same or similar way or in extracts in another assignment.
 
-
+\vspace{1cm}
 \_____________________________
 
 Personally signed
@@ -134,25 +134,21 @@ Personally signed
 #| child = 'theory.qmd'
 ```
 
-\newpage
 
 ```{r}
 #| child = 'methods.qmd'
 ```
 
-\newpage
 
 ```{r}
 #| child = 'results.qmd'
 ```
 
-\newpage
 
 ```{r}
 #| child = 'discussion.qmd'
 ```
 
-\newpage
 
 ```{r}
 #| child = 'conclusion.qmd'
@@ -188,6 +184,8 @@ sessionInfo()
 ```
 
 ### Packages
+
+<!-- this chunk sometimes causes problems while rendering (and I have no idea why). Just try to rerun the render process or comment the lines in the chunk -->
 
 ```{r}
 #| message: false
