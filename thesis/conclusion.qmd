@@ -1,0 +1,18 @@
+---
+title: ''
+format: pdf
+bibliography: ../references.bib
+editor:
+  markdown:
+    references: 
+      location: block
+      prefix: "conclusion"
+---
+
+# Conclusion
+
+Sport science aims to understand sports performance and health, along with their underlying causes and mechanisms. Such causal research requires both appropriate research designs and analysis methods. However, randomized controlled trials, the gold standard for causal research designs, are often unfeasible in sport science, and causal analysis methods are rarely used. Leveraging causal analysis methods from fields like applied statistics, epidemiology, and economics offers valuable possibilities. These methods help to distinguish mere statistical associations from true causal relationships.
+
+As demonstrated through two examples of published research, sport science benefits from discussing the causal networks underlying research questions and selecting analysis methods accordingly. New analytical tools popular in other domains provide innovative methods for analyzing observational data in sport science, yielding estimates with less bias than traditional methods (though they cannot solve existing problems with small samples and low-quality data). Furthermore, systematic causal data analysis typically offers greater transparency in communicating assumptions and interpreting research findings.
+
+Causal data analysis requires collaboration between domain experts in data analysis and those in the investigated research field, as the analysis is never blind to the context in which the data was collected. Causal inference methods play a crucial role in a broader reform of the scientific workflow, which includes clearly stating research questions and aims and testing the robustness of findings. Embedding causal thinking and analysis methods can ultimately enhance sport science's pursuit for knowledge.

@@ -1,0 +1,20 @@
+---
+title: ''
+format: pdf
+bibliography: ../references.bib
+editor:
+  markdown:
+    references: 
+      location: block
+      prefix: "methods"
+---
+
+# Methods
+
+For this thesis, I reviewed two exemplary research articles from sport science [@malisoux2015; @kruseman2005] from a causal inference point of view. I chose them based on a non-systematic search, implicitly following these criteria: (1) observational study research design; (2) from a subfield (endurance running) in which I have sufficient background knowledge to discuss potential causal models; (3) causal aim; (4) representative of current relevant sport science (i.e., published in respected journals and having received scientific attention in the form of citations). I also considered the potential to discuss different causal aspects in the studies and chose two studies differing in their aims and methods used. Due to the unsystematic search and screening of studies, the final choice of studies was subjective. However, I believe they not only serve to illustrate my point but also represent valid examples of contemporary sport science research.
+
+This thesis was registered before its start using a free-form preregistration published on the [Open Science Framework](https://osf.io/vgx8m) [@foster2017]. However, as this thesis is mainly conceptual, writing a preregistration proved to be challenging. It was not possible to make any concrete statements about the planned research. The published preregistration captured my ideas for this thesis with the causal inference knowledge I had before starting to write it. Since then, both my knowledge and my ideas for the thesis have developed to the extent that ultimately this final thesis shows major deviations from its preregistration.
+
+Originally, I planned to demonstrate techniques and principles of causal inference on a previously published data set from endurance running. However, during the process of writing, I realized that the data set is not adequate to perform causal analyses, and that it is rather impossible (and not useful) to demonstrate several general principles of causal inference on a single data set. Instead, it is more helpful to work on a concrete research example and discuss the appropriate causal inference techniques. Therefore, I decided to revisit two published studies from a causal inference view point, something I had not considered when writing the preregistration. Originally, I planned to demonstrate the process of developing a causal model by creating a causal model of endurance performance. During the writing of the thesis, I realized that general causal models rarely exist (especially if the concept investigated is complex), but that appropriate causal models always depend on the exact research question and context (see @sec-complex for a discussion). Thus, I did not develop a causal model for endurance performance, but developed potential causal models for the example articles I discuss. Finally, the preregistration focused mainly on the graphical model approach to causal inference. This was primarily because that was my first entry into causal inference, and at the point of writing the preregistration, I was only partly aware of other approaches. While the final thesis still focuses on graphical models in the theoretical background section, I also thoroughly discuss methods more often attributed to other causal inference frameworks (e.g., the methods in @sec-ident that are often seen as related to the potential outcome framework). In a way, this thesis also demonstrates the process of individual acquaintance with a research field and the difficulties in pre-planning conceptual work.
+
+This thesis was written with Quarto version 1.3.450 [@allaire2023] in the RStudio IDE version 2024.4.0.735 [@positteam2024]. The default settings and attached packages are documented in @sec-tech. The DAGs in this thesis were drawn in R version 4.4.0 [@r2024] using the ggdag package [@barrett2024], which is based on the software dagitty [@textor2016]. All source code of this project is available on [GitHub](https://github.com/smnnlt/causal-inference-sport).
